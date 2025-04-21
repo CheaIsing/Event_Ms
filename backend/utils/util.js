@@ -23,13 +23,11 @@ const responseObj = (
   status,
   result,
   message,
-  data = null,
+  data = [],
   paginate = null
 ) => {
-  const obj = { status, result, message };
-  if (data) {
-    obj.data = data;
-  }
+  const obj = { status, result, message, data };
+
   if (paginate) {
     obj.paginate = paginate;
   }
