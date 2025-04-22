@@ -1,6 +1,6 @@
 const sanitizeHtml = require("sanitize-html");
 const moment = require("moment");
-const { responseObj, generateToken, generateOTP } = require("../utils/util");
+const { responseObj, generateToken, generateOTP, texts } = require("../utils/util");
 
 const User = require("../models/user.model");
 const { loggingError } = require("../utils/logging");
@@ -109,7 +109,7 @@ class AuthService {
 
     const { error } = vResetPassword.validate({ newPassword, confirmPassword });
 
-    if (error) {
+    if (error) { 
       return responseObj(400, false, error.message);
     }
 
@@ -140,7 +140,7 @@ class AuthService {
 
   static async getMe(userId){
 
-    const user = await User.findById(userId)
+    const user = await User.findById(userId);
 
     if (!user) {
       return responseObj(400, false, "User is not found.");
@@ -157,7 +157,6 @@ class AuthService {
       created_at,
       updated_at,
     } = user;
-
     
     const userObj = {
       id,

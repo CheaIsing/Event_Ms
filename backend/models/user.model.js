@@ -67,6 +67,14 @@ class User{
 
         return rows;
     }
+
+    static async deleteById(userId){
+        const sql = "DELETE FROM tbl_users WHERE id = ? ";
+
+        const [rows] = await pool.query(sql, userId);
+
+        return rows
+    }
     
 }
 

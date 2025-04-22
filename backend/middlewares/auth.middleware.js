@@ -1,7 +1,8 @@
+const User = require("../models/user.model");
 const { sendResponse } = require("../utils/util");
 const jwt = require("jsonwebtoken");
 
-const requireAuth = (req, res, next) => {
+const requireAuth = async (req, res, next) => {
   const token = req.cookies.jwt_token;
 
   if (!token) {
@@ -23,6 +24,18 @@ const requireAuth = (req, res, next) => {
       401,
       false,
       "Authorization Failed. Invalid token."
+    );
+  }
+
+  const user = await User.findById(userId);
+
+  if(!user){
+    req.user = null;
+    return sendResponse(
+      res,
+      401,
+      false,
+      "User is not found."
     );
   }
 
