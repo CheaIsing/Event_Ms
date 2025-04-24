@@ -3,6 +3,8 @@ const { responseObj } = require("../utils/util");
 const cloudinary = require("../config/cloudinary");
 const sanitizeHtml = require("sanitize-html")
 
+const bcrypt = require("bcrypt")
+
 class ProfileService {
   
   static async updateProfile(username, email, phone, address, userId) {
@@ -52,7 +54,6 @@ class ProfileService {
     const rows = await User.updateUserById(userId, {
       avatar: secure_url,
       avatar_public_id: public_id,
-      userId,
     });
 
     if (rows.affectedRows == 0) {
@@ -114,6 +115,7 @@ class ProfileService {
     return responseObj( 200, true, "Password Updated Successfully.");
 
   }
+  
   static async deleteAccount(currentPassword, userId, res) {
 
     currentPassword = sanitizeHtml(currentPassword)

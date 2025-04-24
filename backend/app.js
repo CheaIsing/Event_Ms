@@ -20,6 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use("/api/auth", authRoute);
 app.use("/api/profile", profileRoute);
+// app.use("/api/events", );
+
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

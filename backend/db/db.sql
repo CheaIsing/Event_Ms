@@ -20,3 +20,18 @@ CREATE TABLE `tbl_users` (
   reset_token_expiration DATETIME
 
   ALTER TABLE tbl_users ADD COLUMN avatar_public_id varchar(255)
+
+  CREATE TABLE tbl_events(
+    id bigint UNSIGNED NOT NULL AUTO_INCREMENT,
+    creator_id  bigint UNSIGNED NOT NULL,
+    title varchar(255) NOT NULL,
+    description text NOT NULL,
+    start_date timestamp NOT NULL,
+    end_date timestamp NOT NULL,
+    location varchar(255) NULL,
+    event_type tinyint DEFAULT 1 COMMENT '1 for in person, 2 for online'
+  PRIMARY KEY(id));
+
+  ALTER TABLE tbl_events 
+  ADD CONSTRAINT t
+  

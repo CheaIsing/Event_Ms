@@ -1,7 +1,6 @@
 const pool = require("../config/db");
-const moment = require("moment");
 
-class User {
+class Event {
   static {
     this.initializeTable();
   }
@@ -32,14 +31,14 @@ class User {
     }
   }
 
-  static async findByEmail(email) {
-    const sql = "SELECT * FROM tbl_users WHERE email = ?";
+  static async find() {
+    const sql = "SELECT * FROM tbl_events";
     const [user] = await pool.query(sql, email);
     return user.length > 0 ? user[0] : null;
   }
 
   static async findById(id) {
-    const sql = "SELECT * FROM tbl_users WHERE id = ?";
+    const sql = "SELECT * FROM tbl_events WHERE id = ?";
     const [user] = await pool.query(sql, id);
     return user.length > 0 ? user[0] : null;
   }
@@ -85,4 +84,4 @@ class User {
   }
 }
 
-module.exports = User;
+module.exports = Event;
